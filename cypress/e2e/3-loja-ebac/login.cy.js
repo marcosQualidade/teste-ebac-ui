@@ -21,8 +21,8 @@ describe('Verifica se o ecommerce Ebac-Shop está online', () => {
     
     it('Deve fazer login com sucesso - Usando Fixture', () => { // usando o método fixture() | nativo do cypress
         cy.fixture('perfil').then(dados => { // .then() metodo é necessário devido cypress ser assincrono e carregar tudo ao mesmo tempo
-            cy.get('#username').type(dados.userName) // nome dados criado aleatóriamente , porém, faz sentido no contexto do teste
-            cy.get('#password').type(dados.password)
+            cy.get('#username').type(dados.userName, {log:false}) // nome dados criado aleatóriamente , porém, faz sentido no contexto do teste
+            cy.get('#password').type(dados.password, {log:false})
             cy.get('.woocommerce-form > .button').click()
             cy.get('a > .hidden-xs').should('contain', 'Welcome gaviao.arqueiro !')
         })
@@ -42,4 +42,10 @@ describe('Verifica se o ecommerce Ebac-Shop está online', () => {
         cy.get('.woocommerce-error > li').should('contain', 'Erro: A senha fornecida para o e-mail gaviao.arqueiro@teste.com.br está incorreta.')
     })
 
+    // Usando comandos customizados | credenciais no bloco de teste.
+    it('Funcionalidade: Deve fazer login com sucesso', () => {
+        cy.login('gaviao.arqueiro@teste.com.br', 'Qa12345678', {log:false})
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, gaviao.arqueiro')
+        cy.screenshot()
+    })
 })

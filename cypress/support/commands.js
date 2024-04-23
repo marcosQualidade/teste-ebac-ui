@@ -1,25 +1,31 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', (userName, password) => {
+    cy.get('#username').type(userName)
+    cy.get('#password').type(password)
+    cy.get('.woocommerce-form > .button').click()
+})
+
+Cypress.Commands.add('preCadastro', (email, senha, msg) => {      
+    cy.get('#reg_email').type(email)
+    cy.get('#reg_password').type(senha)
+    cy.get(':nth-child(4) > .button').click()
+})
+
+Cypress.Commands.add('novoCadastro', (email, senha) => {
+    cy.get('#reg_email').type(email)
+    cy.get('#reg_password').type(senha)
+    cy.get(':nth-child(4) > .button').click()
+})
+
+Cypress.Commands.add('detalheConta', (nome, sobreNome, apelido) => {
+    cy.get('#account_first_name').clear()
+    cy.get('#account_first_name').type(nome)
+    cy.wait(3000) 
+    cy.get('#account_last_name').clear()
+    cy.get('#account_last_name').type(sobreNome)
+    cy.wait(3000)
+    cy.get('#account_display_name').clear()
+    cy.wait(3000)
+    cy.get('#account_display_name').type(apelido)
+    cy.wait(3000)
+    cy.get('.woocommerce-Button').click()
+})
