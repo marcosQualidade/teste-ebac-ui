@@ -1,8 +1,11 @@
 /// <reference types="cypress" />
 
-describe('FUncionalidade: Produtos', () => {
+import produtosPage from "../../support/page-objects/produtos.page"
+
+describe('Funcionalidade: Produtos', () => {
     beforeEach(() => {
-        cy.visit('produtos')
+        //cy.visit('produtos')
+        produtosPage.visitarUrl()
        })
     
     var passou = 'Descrição'   
@@ -22,7 +25,24 @@ describe('FUncionalidade: Produtos', () => {
         cy.get('#tab-title-description > a').should('contain', passou)
     })
 
+    // Implementando automação com pageObjects
 
+    it('Deve buscar um produto com sucesso', () => {
+        let produto = 'Bruno Compete Hoodie'
+        produtosPage.buscarProduto(produto)
+        cy.get('.product_title').should('contain', produto)
+    })
+    
+    it('Deve buscar um produto da lista', () => {
+        let produto = 'Ajax Full-Zip Sweatshirt'
+        produtosPage.buscarProdutoLista(produto)
+        cy.get('.product_title').should('contain', produto) 
+    })
 
+    it('Deve adicionar um produto ao carrinho de compras', () => {
+        let produto = 'Ariel Roll Sleeve Sweatshirt'
+        produtosPage.addProdutoCarrinho(produto)
+        cy.get('.woocommerce-message').should('contain', '“Ariel Roll Sleeve Sweatshirt” foi adicionado no seu carrinho.')
+    })
 
 })

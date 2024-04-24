@@ -19,13 +19,11 @@ Cypress.Commands.add('novoCadastro', (email, senha) => {
 Cypress.Commands.add('detalheConta', (nome, sobreNome, apelido) => {
     cy.get('#account_first_name').clear()
     cy.get('#account_first_name').type(nome)
-    cy.wait(3000) 
+    
     cy.get('#account_last_name').clear()
     cy.get('#account_last_name').type(sobreNome)
-    cy.wait(3000)
     cy.get('#account_display_name').clear()
-    cy.wait(3000)
+
     cy.get('#account_display_name').type(apelido)
-    cy.wait(3000)
     cy.get('.woocommerce-Button').click()
 })
