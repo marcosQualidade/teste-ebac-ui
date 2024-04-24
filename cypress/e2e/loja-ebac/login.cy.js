@@ -12,8 +12,8 @@ describe('Verifica se o ecommerce Ebac-Shop está online', () => {
     })  
     
     it('Deve fazer login com sucesso', () => {
-        cy.get('#username').type(perfil.userName, {log:false}) // log:false esconde os dados que podem ser sensíveis a LGPD
-        cy.get('#password').type(perfil.password, {log:false}) // log:false esconde os dados que podem ser sensíveis a LGPD
+        cy.get('#username').type(perfil[1].userName, {log:false}) // log:false esconde os dados que podem ser sensíveis a LGPD
+        cy.get('#password').type(perfil[1].password, {log:false}) // log:false esconde os dados que podem ser sensíveis a LGPD
         cy.get('.woocommerce-form > .button').click()
         cy.get('a > .hidden-xs').should('contain', 'Welcome gaviao.arqueiro !')
     })
@@ -21,12 +21,12 @@ describe('Verifica se o ecommerce Ebac-Shop está online', () => {
     
     it('Deve fazer login com sucesso - Usando Fixture', () => { // usando o método fixture() | nativo do cypress
         cy.fixture('perfil').then(dados => { // .then() metodo é necessário devido cypress ser assincrono e carregar tudo ao mesmo tempo
-            cy.get('#username').type(dados.userName, {log:false}) // nome dados criado aleatóriamente , porém, faz sentido no contexto do teste
-            cy.get('#password').type(dados.password, {log:false})
+            cy.get('#username').type(dados[1].userName, {log:false}) // nome dados criado aleatóriamente , porém, faz sentido no contexto do teste
+            cy.get('#password').type(dados[1].password, {log:false})
             cy.get('.woocommerce-form > .button').click()
             cy.get('a > .hidden-xs').should('contain', 'Welcome gaviao.arqueiro !')
         })
-    }) 
+    })
     
     it('Deve visualizar mensagem de erro ao inserir usuário inválido', () => {
         cy.get('#username').type('gaviao.arqueiro@teste.com')

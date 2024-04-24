@@ -1,7 +1,14 @@
-
+[
     {
         "userName": "oliveira.qa@teste.com",
         "password": "qa12345678"
+    },
+
+    {
+        "userName": "gaviao.arqueiro@teste.com.br",
+        "password": "Qa12345678"
     }
 
+
+]    
 
