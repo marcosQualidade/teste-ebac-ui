@@ -13,13 +13,16 @@ class ProdutosPage {
         cy.get('.product-block').contains(nomeProduto).click()
     }   
 
-    addProdutoCarrinho(produto) {
-        cy.get('[placeholder]').eq(1).type(produto)
-        cy.get('[class="button-search btn btn-sm"]').eq(1).click()
-        cy.get('.product_title').should('contain', 'Ariel Roll Sleeve Sweatshirt')
+    visitarProduto(nomeProduto) {
+    //  cy.visit(`produtos/${nomeProduto}`)
+        const urlFormatada = nomeProduto.replace(/ /g, '-')
+        cy.visit(`produtos/${urlFormatada}`)
+    }
 
-        cy.get('.button-variable-item-XS').click()
-        cy.get('.button-variable-item-Green').click()
+    addProdutoCarrinho(tamanho, cor, quantidade) {
+        cy.get(`.button-variable-item-${tamanho}`).click()
+        cy.get(`.button-variable-item-${cor}`).click()
+        cy.get(`.input-text`).clear().type(quantidade)        
         cy.get('.single_add_to_cart_button').click()
     }
     

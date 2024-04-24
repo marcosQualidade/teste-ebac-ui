@@ -26,7 +26,6 @@ describe('Funcionalidade: Produtos', () => {
     })
 
     // Implementando automação com pageObjects
-
     it('Deve buscar um produto com sucesso', () => {
         let produto = 'Bruno Compete Hoodie'
         produtosPage.buscarProduto(produto)
@@ -40,9 +39,22 @@ describe('Funcionalidade: Produtos', () => {
     })
 
     it('Deve adicionar um produto ao carrinho de compras', () => {
-        let produto = 'Ariel Roll Sleeve Sweatshirt'
-        produtosPage.addProdutoCarrinho(produto)
-        cy.get('.woocommerce-message').should('contain', '“Ariel Roll Sleeve Sweatshirt” foi adicionado no seu carrinho.')
+        let nomeProduto = 'Ariel-Roll-Sleeve-Sweatshirt'
+        produtosPage.visitarProduto(nomeProduto)
+        produtosPage.addProdutoCarrinho( 'M', 'Green', 5)
+        cy.get('.woocommerce-message').should('contain', '5 × “Ariel Roll Sleeve Sweatshirt” foram adicionados no seu carrinho.')
     })
+
+    it('Deve adicionar produtos ao carrinho usando massa de dados', () => {
+        cy.fixture('produtos').then((dados) => {
+            produtosPage.visitarProduto(dados[4].nomeProduto)
+            produtosPage.addProdutoCarrinho(
+                dados[4].tamanho, 
+                dados[4].cor, 
+                dados[4].quantidade)
+                cy.get('.product_title').should('contain', dados[4].nomeProduto)    
+        }) 
+    
+    })         
 
 })

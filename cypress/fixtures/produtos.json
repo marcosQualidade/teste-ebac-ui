@@ -1,0 +1,36 @@
+[
+    {
+        "nomeProduto" : "Pierce Gym Short",
+        "tamanho" : "36",
+        "cor" : "Red",
+        "quantidade" : 2
+    },
+
+    {
+        "nomeProduto" : "Aether Gym Pant",
+        "tamanho" : "36",
+        "cor" : "Green",
+        "quantidade" : 3
+    },
+
+    {
+        "nomeProduto" : "Atomic Endurance Running Tee (Crew-Neck)",
+        "tamanho" : "XS",
+        "cor" : "Black",
+        "quantidade" : 5
+    },
+
+    {
+        "nomeProduto" : "Stellar Solar Jacket",
+        "tamanho" : "M",
+        "cor" : "Yellow",
+        "quantidade" : 10
+    },
+
+    {
+        "nomeProduto" : "Cassia Funnel Sweatshirt",
+        "tamanho" : "L",
+        "cor" : "Orange",
+        "quantidade" : 12
+    }
+]
